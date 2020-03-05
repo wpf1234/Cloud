@@ -1,0 +1,68 @@
+syntax="proto3";
+
+message MsgReq{
+    int64 skip=1;
+    int64 limit=2;
+    string serviceName=3;
+    string commenter=4;
+    int64 show=5;
+    Sort sort=6;
+}
+
+message Sort{
+    string column=1;
+    int64 sort=2;
+}
+
+message MessageList{
+    repeated Msg list=1;
+    int64 total=2;
+    int64 new=3;
+}
+
+message Msg{
+    int64 id=1;
+    string serviceName=2;
+    string commenter=3;
+    string content=4;
+    string msgTime=5;
+    int64 read=6;
+    string reply=7;
+    int64 show=8;
+    int64 serviceId=9;
+}
+
+message MsgDetail{
+    int64 id=1;
+    string commenter=2;
+    string tel=3;
+    string serviceName=4;
+    int64 serviceId=5;
+    string msgTime=6;
+    string content=7;
+
+    string respondent=8;
+    string reply=9;
+    string replyTime=10;
+
+    int64 show=11;
+}
+
+
+// 回复留言
+message Reply{
+    int64 id=1;
+    string reply=2;        // 答复内容
+    string replyTime=3;    // 答复时间
+}
+
+// 更改状态
+message Show{
+    repeated int64 ids=2;
+    int64 show=3;
+}
+
+message Read{
+    repeated int64 ids=2;
+    int64 read=3;
+}

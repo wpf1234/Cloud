@@ -1,0 +1,37 @@
+syntax="proto3";
+
+// 查询广告
+message AdReq{
+    int64 skip=1;
+    int64 limit=2;
+}
+
+message AdRes{
+    int64 id=1;
+    string position=2;
+    string remark=3;
+    string updateTime=4;
+}
+
+message AdModify{
+    string aaa=1;
+    string remark=2;
+    repeated Content content=3;
+}
+
+message Content{
+    string image=1;
+    string url=2;
+}
+
+message AdInfo{
+    int64 id=1;
+    string position=2;
+    string remark=3;
+    string updateTime=4;
+}
+
+message AdList{
+    repeated AdInfo list=1;
+    int64 total=2;
+}

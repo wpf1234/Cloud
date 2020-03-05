@@ -1,0 +1,198 @@
+syntax="proto3";
+
+// 发布申请信息结构体
+message Apply{
+    string name=1;
+    string serial=2;       //流水线编号
+    string serviceType=3;   //服务类型
+    repeated string deliver=4;         //服务交互
+    string classify=5;
+
+    int64 status=6;        //状态(1:已通过，2:已驳回，3:待审批，4:已取消)
+    string applyTime=7;    //申请时间
+    string stateTime=8;    //通过时间，驳回时间，取消时间
+    string data=9;         //驳回原因
+}
+
+// 服务发布申请结构体
+message Details{
+    int64 id=1;
+    string serial=2;
+    string classify=3;
+    string name=4;
+    repeated string deliver=5;
+    string serviceType=6;
+    int64 status=7;
+    string updateTime=8;
+    int64 msgId=9;
+    int64 msgStatus=10;
+}
+
+// 服务发布申请结果查询
+message Request{
+    int64 tag=1;         //查询时的一个标志(0:全部，1:待审核，2:已通过，3:驳回，4:取消)
+    int64 skip=2;        //页码
+    int64 limit=3;       //每页的条数
+
+    string serial=4;     //流水号
+    string classify=5;    //服务分类
+    string name=6;
+    repeated string deliver=7; //交互方式
+    string serviceType=8;             //服务类型
+    int64 status=9;           //状态(1:已通过，2:已驳回，3:待审批，4:已取消，5:上架，6:下架)
+    Sort sort=10;
+}
+
+message Sort{
+    string column=1;
+    int64 sort=2;
+}
+
+// 服务发布申请结果响应
+message Response{
+    int64 code=1;
+    Data data=2;
+    string message=3;
+}
+
+message Data{
+    repeated Details list=1;
+    int64 total=2;
+    int64 pass=3;
+    int64 reject=4;
+}
+
+//使用申请
+message UseApply{
+    int64 id=1;
+    string name=2;
+    string reason=3;
+}
+
+//提交成功返回的数据
+message Success{
+    string serial=1;
+    string name=2;
+    string reason=3;
+    string mail=4;
+    string applicant=5;
+    string dept=6;
+}
+
+//查看使用申请信息
+message UseApplication{
+    int64 tag=1;
+    int64 skip=2;
+    int64 limit=3;
+    string serial=4;
+    string serviceName=5;
+    string projectName=6;
+    string charge=7;
+    Sort sort=9;
+}
+
+//响应结果
+message UseData{
+    repeated UseInfo list=1;
+    int64 total=2;
+    int64 pass=3;
+    int64 reject=4;
+}
+
+message UseInfo{
+    int64 id=1;
+    string serial=2;
+    string serviceName=3;
+    string projectName=4;
+    string charge=5;
+    string applyTime=6;
+    int64 status=7;
+    int64 serviceId=8;
+    bool update=9;
+    int64 msgId=10;
+    int64 msgStatus=11;   // 是否已读
+}
+
+
+//服务使用申请详情
+message ApplyDetail{
+    string service=1;
+    int64 serviceId=2;
+    string serial=3;
+    string project=4;
+    string reason=5;
+    string applyTime=6;
+    int64 status=7;
+
+    string stateTime=8;
+    string data=9;       //只有驳回时有数据
+}
+
+message UseRequest{
+    int64 type=1;
+    int64 skip=2;
+    int64 limit=3;
+    string mail=4;
+    string applicant=5;
+    string serial=6;
+    string service=7;
+    string project=8;
+    string charge=9;
+    Sort sort=10;
+}
+
+message UseResponse{
+    repeated List list=1;
+    int64 total=2;
+    int64 pass=3;
+    int64 reject=4;
+}
+
+message List{
+    int64 id=1;
+    string mail=2;
+    string applicant=3;
+    string serial=4;
+    string service=5;
+    string project=7;
+    string charge=8;
+    string applyTime=9;
+    int64 status=10;
+    int64 serviceId=11;
+    int64 msgId=12;
+    int64 msgStatus=13;
+}
+
+// A1-服务发布申请
+message ServiceApply{
+    string name=1;
+    string serviceType=2;
+    string classify=3;
+    repeated string deliver=4;
+    repeated string tag=5;
+    string brief=6;
+    string detail=7;
+    string intro=8;
+    string url=9;
+    repeated Document file=10;
+    repeated Document image=11;
+    repeated Document video=12;
+    string leader=14;
+    string head=15;
+}
+
+message Document{
+    string name=1;
+    string url=2;
+}
+
+// 发布申请成功
+message PublishSuccess{
+    string serial=1;
+    string name=2;
+    repeated string deliver=3;
+    string mail=4;
+    string charge=5;
+    string dept=6;
+    int64 id=7;
+}

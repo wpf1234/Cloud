@@ -1,0 +1,22 @@
+api:
+  mysql:
+    #dsn: greeyun:greeyun2019@(127.0.0.1:3306)/marketplace?charset=utf8&parseTime=true
+    dsn: wpf:wpf123456@(127.0.0.1:3306)/software_cloud?charset=utf8&parseTime=true
+    maxIdle: 100
+    maxOpen: 200
+  sign:
+    appid: 9ff9cb68-af98-4bc3-923f-c88f733fe309
+    appkey: 543097bc-8e9d-45c3-abf0-b8ab05b7b558
+    getToken: http://mobileapi.gree.com/wfApi/api/login
+    submit: http://mobileapi.gree.com/wfapi/api/Business
+    useWFID: 5184
+    useId: 24604
+    useCancel: 25407
+    pubWFID: 5157
+    pubId: 24467
+    pubCancel: 25408
+#  redis:
+#    addr: 10.2.10.108:19000
+#    password: proxy#gree
+#    db: 8
+#    poolSize: 10

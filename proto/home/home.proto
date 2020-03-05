@@ -1,0 +1,58 @@
+syntax="proto3";
+
+// A-首页
+// 首页需要显示的内容
+
+message AD{
+    string image=1;
+    string url=2;
+}
+
+message Rank{
+    string serviceName=1;
+    string dept=2;
+    int64 count=3;
+    int64 id=4;
+}
+
+message ServiceList{
+    repeated Service list=1;
+    int64 total=2;
+}
+
+message Service{
+    string serviceName=1;
+    string brief=2;
+    repeated string tag=3;
+    string updateTime=4;
+    int64 applyStatus=5;
+    int64 collectionStatus=6;
+    string deliver=7;
+    int64 id=8;
+}
+
+message HomeReq{
+    int64 skip=1;
+    int64 limit=2;
+    Sort sort=4;
+}
+
+message Sort{
+    string column=1;
+    int64 sort=2;
+}
+
+
+// A2-服务列表
+message ListReq{
+    int64 skip=1;
+    int64 limit=2;
+    string classify=3;
+    string dept=4;
+    string deliver=5;
+    string serviceType=6;
+    Sort sort=7;
+    string serviceName=8;
+}
+
+

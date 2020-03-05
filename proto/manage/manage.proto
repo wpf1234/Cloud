@@ -1,0 +1,161 @@
+syntax="proto3";
+
+// 服务发布信息
+message Info{
+    int64 id=1;
+    string name=2;
+    string serviceType=3;
+    string classify=4;
+    repeated string deliver=5;
+    repeated string tag=6;
+    string brief=7;
+    int64 status=8;
+    string detail=9;     // 详情介绍
+    string intro=10;      // 使用说明
+    string url=11;   // 服务Demo演示地址
+    repeated Document file=12;      // 文件
+    repeated Document image=13;     // 图片
+    repeated Document video=14;     // 视频
+    repeated string chooseClassify=15;
+    repeated string chooseDeliver=16;
+}
+
+message Document{
+    string name=1;
+    string url=2;
+}
+
+// 服务发布条件查询请求
+message Request{
+    int64 type=1;
+    int64 skip=2;
+    int64 limit=3;
+    string serial=4;
+    string classify=5;
+    string name=6;
+    repeated string deliver=7;
+    string dept=8;
+    string serviceType=10;
+    int64 status=11;
+    Sort sort=12;
+}
+
+message Sort{
+    string column=1;
+    int64 sort=2;
+}
+
+message Service{
+    int64 id=1;
+    string serial=4;
+    string classify=5;
+    string name=6;
+    repeated string deliver=7;
+    string dept=8;
+    string charge=9;
+    string serviceType=10;
+    int64 status=11;
+    int64 applyNumber=12;
+    string updateTime=13;
+    int64 msgId=14;
+    int64 msgStatus=15;
+}
+
+message Response{
+    int64 code=1;
+    Data data=2;
+    string message=3;
+}
+
+message Data{
+    repeated Service list=1;
+    int64 total=2;
+    repeated string classify=3;
+    repeated string deliver=4;
+    repeated string type=5;
+    repeated string dept=6;
+    int64 pass=7;
+    int64 reject=8;
+}
+
+message ServiceDetail{
+    int64 id=1;
+    string name=2;
+    repeated string deliver=3;
+    string classify=4;
+    string serviceType=5;
+    string dept=6;
+    string charge=7;
+    string updateTime=8;
+    repeated string tag=9;
+    string brief=10;
+    string detail=11;
+    string intro=12;
+    string url=13;
+    repeated Document file=14;      // 文件
+    repeated Document image=15;     // 图片
+    repeated Document video=16;     // 视频
+}
+
+// 服务统计，包括申请总数，PV总数，每个月的申请数量，各个部门服务申请的数量
+message RankReq{
+    int64 id=1;
+    int64 skip=2;
+    string order=4;
+}
+
+message Statistics{
+    repeated ApplyStats apply=3;
+    repeated Rank rank=4;
+    int64 total=5;
+}
+
+message ApplyStats{
+    string date=1;
+    int64 count=2;
+}
+
+message Rank{
+    string dept=1;
+    int64 count=2;
+}
+
+// 消息管理
+message SysReq{
+    int64 skip=1;
+    int64 limit=2;
+    string creator=3;
+    string mail=4;
+    int64 status=5;
+    Sort sort=6;
+}
+
+message SysMsg{
+    int64 id=1;
+    string content=2;
+    string creator=3;
+    string mail=4;
+    string createTime=5;
+    string sendTime=6;
+    int64 status=7;
+}
+
+message MsgList{
+    repeated SysMsg list=1;
+    int64 total=2;
+}
+
+message SysMsgInfo{
+    int64 id=1;
+    string creator=2;
+    string createTime=3;
+    string stateTime=4;
+    int64 status=5;
+    string content=6;
+}
+
+message NewMsg{
+    string content=1;
+    bool send=2;
+    int64 sendTime=3;
+}

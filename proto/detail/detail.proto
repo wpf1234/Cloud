@@ -1,0 +1,64 @@
+syntax="proto3";
+
+// 服务详情
+message Service{
+    int64 id=1;
+    string name=2;
+    string brief=3;
+    string type=4;
+    repeated string deliver=5;
+    string classify=6;
+    string dept=7;
+    string charge=8;
+    string updateTime=9;
+    repeated string tag=10;
+    int64 status=11;             // 发布申请状态
+    int64 useApplyStatus=12;     // 使用申请状态
+    int64 applyStatus=13;        // 是否申请过
+    int64 collectionStatus=14;   // 是否收藏过
+    string detail=15;
+    string intro=16;
+    string url=17;
+    repeated Document file=18;
+    repeated Document image=19;
+    repeated Document video=20;
+    int64 count=21;
+}
+
+message Document{
+    string name=1;
+    string url=2;
+}
+
+
+// 留言服务
+// 1.显示留言
+// 2.填写留言
+message Comment{
+    string name=1;         // 留言人姓名
+    string message=2;      // 留言内容
+    string writeTime=3;    // 留言时间
+    int64 serviceId=4;
+}
+
+// 查看留言信息
+message CommRes{
+    int64 code=1;
+    Data data=2;
+    string message=3;
+}
+
+message Data{
+    repeated Msg list=1;
+    int64 total=2;
+}
+
+message Msg{
+    string commenter=1;
+    string content=2;
+    string writeTime=3;
+    string respondent=4;
+    string reply=5;
+    string replyTime=6;
+}
+
